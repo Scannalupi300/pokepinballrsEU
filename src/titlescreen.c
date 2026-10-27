@@ -822,8 +822,7 @@ static void RenderTitlePressStartSprites(void)
         {
             struct OamDataSimple *oam = &startGroup->oam[i];
             gOamBuffer[oam->oamId].x = oam->xOffset + startGroup->baseX;
-            gOamBuffer[oam->oamId].y = oam->yOffset + startGroup->baseY;
-            asm("");
+            gOamBuffer[oam->oamId].y = (startGroup->oam + i)->yOffset + startGroup->baseY;
         }
     }
 
@@ -834,9 +833,9 @@ static void RenderTitlePressStartSprites(void)
         for (i = 0; i < 2; i++)
         {
             struct OamDataSimple *oam = &deleteMenuGroup->oam[i];
-            gOamBuffer[oam->oamId].x = oam->xOffset + deleteMenuGroup->baseX;
+            s16 xOffset = oam->xOffset;
+            gOamBuffer[oam->oamId].x = xOffset + deleteMenuGroup->baseX;
             gOamBuffer[oam->oamId].y = oam->yOffset + deleteMenuGroup->baseY;
-            asm("");
         }
     }
 

@@ -1,4 +1,3 @@
-@ Generated for the European version (BPPP) from data/rom_1.s
 .section .rodata
 .align 2
 

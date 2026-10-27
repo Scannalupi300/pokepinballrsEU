@@ -1,4 +1,3 @@
-@ Generated for the European version (BPPP) from data/sound_data_2.s
 .section .rodata
 
 .include "asm/macros/m4a.inc"
@@ -46,5 +45,4 @@ broken_se_6A36D4:  @ 0x08935090
 	.byte	W06
 	.byte	W24
 	.byte	FINE
-@ 0x086A3700
 	.include "data/src/orphaned_se_tracks.inc"

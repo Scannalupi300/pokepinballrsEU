@@ -1,4 +1,3 @@
-@ Generated for the European version (BPPP) from data/rom_2.s
     .section .rodata
 #include "constants/areas.h"
 #include "constants/fields.h"

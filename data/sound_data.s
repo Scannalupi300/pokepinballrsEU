@@ -35,31 +35,31 @@ voice_group gUnknown_0852DBAC, 36
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_directsound_no_resample 72, 94, sc88pro_open_low_conga, 255, 0, 255, 0
 
-gUnknown_0852DD08:: @ 0x087BF6A8
+gKeysplitVoiceGroup_Piano1:: @ 0x087BF6A8
 	voice_directsound 60, 0, sc88pro_piano1_48, 255, 252, 0, 239
 	voice_directsound 60, 0, sc88pro_piano1_60, 255, 250, 0, 221
 	voice_directsound 60, 0, sc88pro_piano1_72, 255, 250, 0, 221
 	voice_directsound 60, 0, sc88pro_piano1_84, 255, 247, 0, 221
 
-gUnknown_0852DD38:: @ 0x087BF6D8
+gKeysplitVoiceGroup_StringEnsemble:: @ 0x087BF6D8
 	voice_directsound 60, 0, sc88pro_string_ensemble_60, 255, 0, 255, 196
 	voice_directsound 60, 0, sc88pro_string_ensemble_72, 255, 0, 255, 196
 	voice_directsound 60, 0, sc88pro_string_ensemble_84, 255, 0, 255, 196
 
-gUnknown_0852DD5C:: @ 0x087BF6FC
+gKeysplitVoiceGroup_Trumpet:: @ 0x087BF6FC
 	voice_directsound 60, 0, sc88pro_trumpet_60, 255, 0, 193, 127
 	voice_directsound 60, 0, sc88pro_trumpet_72, 255, 0, 193, 127
 	voice_directsound 60, 0, sc88pro_trumpet_84, 255, 0, 193, 127
 
-gUnknown_0852DD80:: @ 0x087BF720
+gKeysplitVoiceGroup_Tuba:: @ 0x087BF720
 	voice_directsound 60, 0, sc88pro_tuba_39, 255, 0, 255, 165
 	voice_directsound 60, 0, sc88pro_tuba_51, 255, 0, 255, 165
 
-gUnknown_0852DD98:: @ 0x087BF738
+gKeysplitVoiceGroup_FrenchHorn:: @ 0x087BF738
 	voice_directsound 60, 0, sc88pro_french_horn_60, 255, 0, 224, 165
 	voice_directsound 60, 0, sc88pro_french_horn_72, 255, 0, 218, 165
 
-gUnknown_0852DDB0:: @ 0x087BF750
+gKeysplitVoiceGroup_Piano1_2:: @ 0x087BF750
 	voice_directsound 60, 0, sc88pro_piano1_48, 255, 252, 0, 252
 	voice_directsound 60, 0, sc88pro_piano1_60, 255, 250, 0, 250
 	voice_directsound 60, 0, sc88pro_piano1_72, 255, 250, 0, 250
@@ -67,7 +67,7 @@ gUnknown_0852DDB0:: @ 0x087BF750
 
 gVoiceGroup_Inst_0852DDE0:: @ 0x087BF780
 	voice_keysplit_all voicegroup_gUnknown_0852DBAC
-	voice_keysplit gUnknown_0852DD08, keysplit_gUnknown_08534BC0
+	voice_keysplit gKeysplitVoiceGroup_Piano1, keysplit_piano1
 	voice_directsound 60, 0, trinity_30303_mega_bass, 255, 178, 180, 165
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -114,7 +114,7 @@ gVoiceGroup_Inst_0852DDE0:: @ 0x087BF780
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_directsound 60, 0, sc88pro_harp, 255, 242, 0, 204
 	voice_directsound 60, 0, sc88pro_timpani, 255, 246, 0, 226
-	voice_keysplit gUnknown_0852DD38, keysplit_gUnknown_08534C08
+	voice_keysplit gKeysplitVoiceGroup_StringEnsemble, keysplit_string_ensemble
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -122,11 +122,11 @@ gVoiceGroup_Inst_0852DDE0:: @ 0x087BF780
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD5C, keysplit_gUnknown_08534C50
+	voice_keysplit gKeysplitVoiceGroup_Trumpet, keysplit_trumpet
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD80, keysplit_gUnknown_08534C98
+	voice_keysplit gKeysplitVoiceGroup_Tuba, keysplit_tuba
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD98, keysplit_gUnknown_08534CEC
+	voice_keysplit gKeysplitVoiceGroup_FrenchHorn, keysplit_french_horn
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -153,8 +153,8 @@ gVoiceGroup_Inst_0852DDE0:: @ 0x087BF780
 	voice_square_2_alt 60, 0, 2, 0, 1, 4, 1
 	voice_square_1_alt 60, 0, 0, 2, 0, 1, 4, 1
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D84, 0, 7, 15, 2
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D94, 0, 7, 15, 2
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_5, 0, 7, 15, 2
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_6, 0, 7, 15, 2
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_2 60, 0, 2, 0, 1, 4, 1
 	voice_square_1 60, 0, 0, 2, 0, 1, 4, 1
@@ -259,7 +259,7 @@ gVoiceGroup_Evolution_0852E404:: @ 0x087BFDA4
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD98, keysplit_gUnknown_08534CEC
+	voice_keysplit gKeysplitVoiceGroup_FrenchHorn, keysplit_french_horn
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -280,7 +280,7 @@ gVoiceGroup_Evolution_0852E404:: @ 0x087BFDA4
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_2_alt 60, 0, 2, 0, 1, 9, 0
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D94, 0, 7, 15, 0
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_6, 0, 7, 15, 0
 	voice_square_1_alt 60, 0, 0, 2, 0, 1, 9, 0
 	voice_square_2_alt 60, 0, 3, 0, 1, 7, 0
 	voice_square_1_alt 60, 0, 0, 3, 0, 1, 7, 0
@@ -363,7 +363,7 @@ gVoiceGroup_HurryUp_0852E95C:: @ 0x087C02FC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD38, keysplit_gUnknown_08534C08
+	voice_keysplit gKeysplitVoiceGroup_StringEnsemble, keysplit_string_ensemble
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -375,7 +375,7 @@ gVoiceGroup_HurryUp_0852E95C:: @ 0x087C02FC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD98, keysplit_gUnknown_08534CEC
+	voice_keysplit gKeysplitVoiceGroup_FrenchHorn, keysplit_french_horn
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -402,7 +402,7 @@ gVoiceGroup_HurryUp_0852E95C:: @ 0x087C02FC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D84, 0, 7, 15, 1
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_5, 0, 7, 15, 1
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -446,7 +446,7 @@ gVoiceGroup_HurryUp_0852E95C:: @ 0x087C02FC
 
 gVoiceGroup_Pokedex_0852EF5C:: @ 0x087C08FC
 	voice_keysplit_all voicegroup_gUnknown_0852DBAC
-	voice_keysplit gUnknown_0852DD08, keysplit_gUnknown_08534BC0
+	voice_keysplit gKeysplitVoiceGroup_Piano1, keysplit_piano1
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -501,7 +501,7 @@ gVoiceGroup_Pokedex_0852EF5C:: @ 0x087C08FC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD5C, keysplit_gUnknown_08534C50
+	voice_keysplit gKeysplitVoiceGroup_Trumpet, keysplit_trumpet
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -528,8 +528,8 @@ gVoiceGroup_Pokedex_0852EF5C:: @ 0x087C08FC
 	voice_square_1 60, 0, 0, 2, 0, 2, 3, 1
 	voice_square_2_alt 60, 0, 2, 0, 2, 3, 1
 	voice_square_2_alt 60, 0, 0, 0, 1, 4, 1
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D44, 0, 7, 15, 0
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D84, 0, 7, 15, 0
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_1, 0, 7, 15, 0
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_5, 0, 7, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -576,7 +576,7 @@ gVoiceGroup_Pokedex_0852EF5C:: @ 0x087C08FC
 
 gVoiceGroup_Title_0852F55C:: @ 0x087C0EFC
 	voice_keysplit_all voicegroup_gUnknown_0852DBAC
-	voice_keysplit gUnknown_0852DD08, keysplit_gUnknown_08534BC0
+	voice_keysplit gKeysplitVoiceGroup_Piano1, keysplit_piano1
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -623,7 +623,7 @@ gVoiceGroup_Title_0852F55C:: @ 0x087C0EFC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_directsound 60, 0, sc88pro_harp, 255, 242, 51, 242
 	voice_directsound 60, 0, sc88pro_timpani, 255, 0, 180, 246
-	voice_keysplit gUnknown_0852DD38, keysplit_gUnknown_08534C08
+	voice_keysplit gKeysplitVoiceGroup_StringEnsemble, keysplit_string_ensemble
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -631,7 +631,7 @@ gVoiceGroup_Title_0852F55C:: @ 0x087C0EFC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD5C, keysplit_gUnknown_08534C50
+	voice_keysplit gKeysplitVoiceGroup_Trumpet, keysplit_trumpet
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -658,7 +658,7 @@ gVoiceGroup_Title_0852F55C:: @ 0x087C0EFC
 	voice_square_1_alt 60, 0, 0, 0, 0, 1, 4, 1
 	voice_square_2_alt 60, 0, 2, 0, 1, 4, 1
 	voice_square_2_alt 60, 0, 0, 0, 1, 4, 1
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D44, 0, 7, 15, 0
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_1, 0, 7, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -753,7 +753,7 @@ gVoiceGroup_Jirachi_0852FB5C:: @ 0x087C14FC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_directsound 60, 0, sc88pro_harp, 255, 242, 0, 242
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD38, keysplit_gUnknown_08534C08
+	voice_keysplit gKeysplitVoiceGroup_StringEnsemble, keysplit_string_ensemble
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -763,9 +763,9 @@ gVoiceGroup_Jirachi_0852FB5C:: @ 0x087C14FC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD80, keysplit_gUnknown_08534C98
+	voice_keysplit gKeysplitVoiceGroup_Tuba, keysplit_tuba
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD98, keysplit_gUnknown_08534CEC
+	voice_keysplit gKeysplitVoiceGroup_FrenchHorn, keysplit_french_horn
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -787,7 +787,7 @@ gVoiceGroup_Jirachi_0852FB5C:: @ 0x087C14FC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1_alt 60, 0, 0, 1, 0, 1, 4, 1
 	voice_square_2_alt 60, 0, 1, 0, 1, 4, 1
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D94, 0, 7, 7, 0
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_6, 0, 7, 7, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -883,7 +883,7 @@ gVoiceGroup_EggModeStart_0853015C:: @ 0x087C1AFC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_directsound 60, 0, sc88pro_timpani, 255, 0, 180, 246
-	voice_keysplit gUnknown_0852DD38, keysplit_gUnknown_08534C08
+	voice_keysplit gKeysplitVoiceGroup_StringEnsemble, keysplit_string_ensemble
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -891,11 +891,11 @@ gVoiceGroup_EggModeStart_0853015C:: @ 0x087C1AFC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD5C, keysplit_gUnknown_08534C50
+	voice_keysplit gKeysplitVoiceGroup_Trumpet, keysplit_trumpet
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD98, keysplit_gUnknown_08534CEC
+	voice_keysplit gKeysplitVoiceGroup_FrenchHorn, keysplit_french_horn
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -917,7 +917,7 @@ gVoiceGroup_EggModeStart_0853015C:: @ 0x087C1AFC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1_alt 60, 0, 0, 0, 0, 1, 4, 1
 	voice_square_2_alt 60, 0, 0, 0, 1, 4, 1
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D84, 0, 7, 7, 0
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_5, 0, 7, 7, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -1047,7 +1047,7 @@ gVoiceGroup_EggMode_0853075C:: @ 0x087C20FC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1_alt 60, 0, 0, 1, 0, 1, 4, 1
 	voice_square_2_alt 60, 0, 1, 0, 1, 4, 1
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D84, 0, 7, 15, 3
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_5, 0, 7, 15, 3
 	voice_square_2_alt 60, 0, 3, 0, 1, 4, 1
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -1124,7 +1124,7 @@ gVoiceGroup_EvoMode_08530D5C:: @ 0x087C26FC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_programmable_wave_alt 60, 0, gUnknown_08534DB4, 0, 7, 15, 0
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_8, 0, 7, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -1151,7 +1151,7 @@ gVoiceGroup_EvoMode_08530D5C:: @ 0x087C26FC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD5C, keysplit_gUnknown_08534C50
+	voice_keysplit gKeysplitVoiceGroup_Trumpet, keysplit_trumpet
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -1180,7 +1180,7 @@ gVoiceGroup_EvoMode_08530D5C:: @ 0x087C26FC
 	voice_square_2_alt 60, 0, 2, 1, 1, 4, 1
 	voice_square_2_alt 60, 0, 1, 0, 1, 4, 1
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D34, 0, 7, 15, 0
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_0, 0, 7, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -1273,7 +1273,7 @@ gVoiceGroup_UnkMus_0853135C:: @ 0x087C2CFC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_directsound 60, 0, sc88pro_timpani, 255, 246, 0, 226
-	voice_keysplit gUnknown_0852DD38, keysplit_gUnknown_08534C08
+	voice_keysplit gKeysplitVoiceGroup_StringEnsemble, keysplit_string_ensemble
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -1281,11 +1281,11 @@ gVoiceGroup_UnkMus_0853135C:: @ 0x087C2CFC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD5C, keysplit_gUnknown_08534C50
+	voice_keysplit gKeysplitVoiceGroup_Trumpet, keysplit_trumpet
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
-	voice_keysplit gUnknown_0852DD98, keysplit_gUnknown_08534CEC
+	voice_keysplit gKeysplitVoiceGroup_FrenchHorn, keysplit_french_horn
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -1306,7 +1306,7 @@ gVoiceGroup_UnkMus_0853135C:: @ 0x087C2CFC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_2 60, 0, 3, 0, 1, 7, 1
-	voice_programmable_wave_alt 60, 0, gUnknown_08534D54, 0, 7, 15, 2
+	voice_programmable_wave_alt 60, 0, gProgrammableWaveData_2, 0, 7, 15, 2
 	voice_square_1 60, 0, 0, 3, 0, 1, 7, 1
 	voice_square_1 60, 0, 0, 3, 0, 0, 7, 1
 
@@ -1359,7 +1359,7 @@ gVoiceGroup_SFX_0853174C:: @ 0x087C30EC
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_directsound 60, 0, sc88pro_timpani, 255, 246, 0, 226
-	voice_keysplit gUnknown_0852DD38, keysplit_gUnknown_08534C08
+	voice_keysplit gKeysplitVoiceGroup_StringEnsemble, keysplit_string_ensemble
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
@@ -1675,9 +1675,9 @@ gVoiceGroup_SFX_08532310:: @ 0x087C3CB0
 
 gVoiceGroup_Inst_08532808:: @ 0x087C41A8
 	voice_keysplit_all voicegroup_gUnknown_0852DBAC
-	voice_keysplit gUnknown_0852DD08, keysplit_gUnknown_08534BC0
-	voice_keysplit gUnknown_0852DDB0, keysplit_gUnknown_08534BC0
-	voice_keysplit gUnknown_0852DD08, keysplit_gUnknown_08534BC0
+	voice_keysplit gKeysplitVoiceGroup_Piano1, keysplit_piano1
+	voice_keysplit gKeysplitVoiceGroup_Piano1_2, keysplit_piano1
+	voice_keysplit gKeysplitVoiceGroup_Piano1, keysplit_piano1
 	voice_directsound 60, 0, gDirectSound_085A37F4, 255, 241, 0, 127
 	voice_directsound 60, 0, gDirectSound_0855EA58, 255, 241, 0, 127
 	voice_directsound 60, 0, gDirectSound_085A3DF4, 255, 241, 0, 127
@@ -1718,33 +1718,33 @@ gVoiceGroup_Inst_08532808:: @ 0x087C41A8
 	voice_directsound 60, 0, gDirectSound_085A7EDC, 255, 0, 255, 127
 	voice_directsound 60, 0, gDirectSound_085A8470, 255, 0, 255, 127
 	voice_directsound 60, 0, gDirectSound_085A8470, 255, 0, 255, 127
-	voice_keysplit gUnknown_0852DD38, keysplit_gUnknown_08534C08
+	voice_keysplit gKeysplitVoiceGroup_StringEnsemble, keysplit_string_ensemble
 	voice_directsound 60, 0, sc88pro_pizzicato_strings, 255, 216, 0, 165
 	voice_directsound 60, 0, sc88pro_harp, 255, 242, 0, 204
 	voice_directsound 60, 0, sc88pro_timpani, 255, 246, 0, 226
-	voice_keysplit gUnknown_0852DD38, keysplit_gUnknown_08534C08
-	voice_keysplit gUnknown_0852DD38, keysplit_gUnknown_08534C08
+	voice_keysplit gKeysplitVoiceGroup_StringEnsemble, keysplit_string_ensemble
+	voice_keysplit gKeysplitVoiceGroup_StringEnsemble, keysplit_string_ensemble
 	voice_directsound 60, 0, gDirectSound_085A8788, 255, 0, 255, 127
 	voice_directsound 60, 0, gDirectSound_085A8788, 255, 0, 255, 127
 	voice_directsound 60, 0, gDirectSound_085A9C78, 255, 0, 255, 127
 	voice_directsound 60, 0, gDirectSound_085A9C78, 255, 0, 255, 127
 	voice_directsound 60, 0, gDirectSound_085A9C78, 255, 0, 255, 127
 	voice_directsound 60, 0, gDirectSound_085A9C78, 255, 0, 255, 127
-	voice_keysplit gUnknown_0852DD5C, keysplit_gUnknown_08534C50
+	voice_keysplit gKeysplitVoiceGroup_Trumpet, keysplit_trumpet
 	voice_directsound 60, 0, gDirectSound_085A9EA4, 255, 0, 255, 127
-	voice_keysplit gUnknown_0852DD80, keysplit_gUnknown_08534C98
+	voice_keysplit gKeysplitVoiceGroup_Tuba, keysplit_tuba
 	voice_directsound 60, 0, gDirectSound_085A9EA4, 255, 210, 0, 127
-	voice_keysplit gUnknown_0852DD98, keysplit_gUnknown_08534CEC
-	voice_keysplit gUnknown_0852DD5C, keysplit_gUnknown_08534C50
-	voice_keysplit gUnknown_0852DD5C, keysplit_gUnknown_08534C50
-	voice_keysplit gUnknown_0852DD5C, keysplit_gUnknown_08534C50
+	voice_keysplit gKeysplitVoiceGroup_FrenchHorn, keysplit_french_horn
+	voice_keysplit gKeysplitVoiceGroup_Trumpet, keysplit_trumpet
+	voice_keysplit gKeysplitVoiceGroup_Trumpet, keysplit_trumpet
+	voice_keysplit gKeysplitVoiceGroup_Trumpet, keysplit_trumpet
 	voice_directsound 60, 0, gDirectSound_085AA074, 255, 0, 255, 127
 	voice_directsound 60, 0, gDirectSound_085AA074, 255, 0, 255, 127
 	voice_directsound 60, 0, gDirectSound_085AA074, 255, 0, 255, 127
 	voice_directsound 60, 0, gDirectSound_085AA074, 255, 0, 255, 127
 	voice_directsound 60, 0, gDirectSound_085AA274, 128, 0, 255, 127
-	voice_keysplit gUnknown_0852DD98, keysplit_gUnknown_08534CEC
-	voice_keysplit gUnknown_0852DD98, keysplit_gUnknown_08534CEC
+	voice_keysplit gKeysplitVoiceGroup_FrenchHorn, keysplit_french_horn
+	voice_keysplit gKeysplitVoiceGroup_FrenchHorn, keysplit_french_horn
 	voice_directsound 60, 0, gDirectSound_085A9C78, 255, 0, 255, 127
 	voice_directsound 60, 0, sc88pro_flute, 255, 127, 231, 127
 	voice_directsound 60, 0, sc88pro_flute, 255, 127, 231, 127
@@ -2458,59 +2458,59 @@ gPokemonCryToneBank3:: @ 0x087C5900
 @ begins. Therefore, the notes naturally map to the key split table without
 @ any extra offset calculation.
 
-keysplit gUnknown_08534BC0, 36
+keysplit piano1, 36
 	split 0, 55
 	split 1, 70
 	split 2, 91
 	split 3, 108
 
-keysplit gUnknown_08534C08, 36
+keysplit string_ensemble, 36
 	split 0, 69
 	split 1, 81
 	split 2, 108
 
-keysplit gUnknown_08534C50, 36
+keysplit trumpet, 36
 	split 0, 66
 	split 1, 84
 	split 2, 108
 
-keysplit gUnknown_08534C98, 24
+keysplit tuba, 24
 	split 0, 42
 	split 1, 108
 
-keysplit gUnknown_08534CEC, 36
+keysplit french_horn, 36
 	split 0, 66
 	split 1, 108
 
-gUnknown_08534D34:: @ 0x087C66D4
-	.incbin "sound/programmable_wave_samples/gUnknown_08534D34.pcm"
+gProgrammableWaveData_0:: @ 0x087C66D4
+	.incbin "sound/programmable_wave_samples/gProgrammableWaveData_0.pcm"
 
-gUnknown_08534D44:: @ 0x087C66E4
-	.incbin "sound/programmable_wave_samples/gUnknown_08534D44.pcm"
+gProgrammableWaveData_1:: @ 0x087C66E4
+	.incbin "sound/programmable_wave_samples/gProgrammableWaveData_1.pcm"
 
-gUnknown_08534D54:: @ 0x087C66F4
-	.incbin "sound/programmable_wave_samples/gUnknown_08534D54.pcm"
+gProgrammableWaveData_2:: @ 0x087C66F4
+	.incbin "sound/programmable_wave_samples/gProgrammableWaveData_2.pcm"
 
-gUnknown_08534D64:: @ 0x087C6704
-	.incbin "sound/programmable_wave_samples/gUnknown_08534D64.pcm"
+gProgrammableWaveData_3:: @ 0x087C6704
+	.incbin "sound/programmable_wave_samples/gProgrammableWaveData_3.pcm"
 
-gUnknown_08534D74:: @ 0x087C6714
-	.incbin "sound/programmable_wave_samples/gUnknown_08534D74.pcm"
+gProgrammableWaveData_4:: @ 0x087C6714
+	.incbin "sound/programmable_wave_samples/gProgrammableWaveData_4.pcm"
 
-gUnknown_08534D84:: @ 0x087C6724
-	.incbin "sound/programmable_wave_samples/gUnknown_08534D84.pcm"
+gProgrammableWaveData_5:: @ 0x087C6724
+	.incbin "sound/programmable_wave_samples/gProgrammableWaveData_5.pcm"
 
-gUnknown_08534D94:: @ 0x087C6734
-	.incbin "sound/programmable_wave_samples/gUnknown_08534D94.pcm"
+gProgrammableWaveData_6:: @ 0x087C6734
+	.incbin "sound/programmable_wave_samples/gProgrammableWaveData_6.pcm"
 
-gUnknown_08534DA4:: @ 0x087C6744
-	.incbin "sound/programmable_wave_samples/gUnknown_08534DA4.pcm"
+gProgrammableWaveData_7:: @ 0x087C6744
+	.incbin "sound/programmable_wave_samples/gProgrammableWaveData_7.pcm"
 
-gUnknown_08534DB4:: @ 0x087C6754
-	.incbin "sound/programmable_wave_samples/gUnknown_08534DB4.pcm"
+gProgrammableWaveData_8:: @ 0x087C6754
+	.incbin "sound/programmable_wave_samples/gProgrammableWaveData_8.pcm"
 
-gUnknown_08534DC4:: @ 0x087C6764
-	.incbin "sound/programmable_wave_samples/gUnknown_08534DC4.pcm"
+gProgrammableWaveData_9:: @ 0x087C6764
+	.incbin "sound/programmable_wave_samples/gProgrammableWaveData_9.pcm"
 
 
 	.equiv NUM_TRACKS_BGM, 10

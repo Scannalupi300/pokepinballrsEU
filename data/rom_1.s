@@ -2858,7 +2858,7 @@ gSapphireBoardZigzagoonFx_Gfx:: @ 0x087A4A0C
 	.incbin "graphics/stage/sapphire/zigzagoon_fx.4bpp";
 
 @ Unreferenced blob, most likely a leftover tilemap. This has mostly ascending id values with runs of repeats.
-gUnknown_085279CC:: @ 0x087A560C
+gUnknown_087A560C:: @ 0x087A560C
 	.incbin "graphics/stage/unknown_085279CC.bin"
 
 gOptionsBGMList:: @ 0x087A5962

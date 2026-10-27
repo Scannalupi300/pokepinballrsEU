@@ -127,7 +127,7 @@ def options_unused_copies():
     write('options_unused_sprite_copy.inc', start, end,
           ['Unused copy of the options sprite data (not referenced by the code): a sprite set,',
            'animations, the end of a cut sprite set, sprite sets and the same animations again.'], body)
-    # the 6 bytes after gUnknown_086BBCAC (label from rom_2.s): the end of a cut animation
+    # the 6 bytes after gUnknown_089599C0 (label from rom_2.s): the end of a cut animation
     start, end = 0x089599CE, 0x089599D4
     write('options_unused_anim_tail.inc', start, end,
           ['End of an animation of an unused copy of the options sprite data: the copy is cut in',

@@ -166,7 +166,7 @@ static void InitMainState(void)
     gMain.dispcntBackup = 0;
     gMain.heldKeys = 0;
     gMain.newKeys = 0;
-    gMain.unk20 = 0;
+    gMain.unused20 = 0;
     gMain.rngValue = 0;
     gMain.systemFrameCount = 0;
     gMain.idleDemoVariant = 0;

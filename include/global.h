@@ -181,7 +181,7 @@ struct PinballGame
     /*0x017*/ s8 boardSubState; // Sub-state switch variable within each board state handler
     /*0x018*/ u16 stageTimer; // Frame counter used across all board processes
     /*0x01A*/ s8 flippersDisabled;
-    /*0x01B*/ u8 unk1B;
+    /*0x01B*/ u8 unused1B;
     /*0x01C*/ bool8 scoreCounterAnimationEnabled;
     /*0x01D*/ u8 fadeSubState;
     /*0x01E*/ u8 gravityStrengthIndex; // Range: 0-3
@@ -194,7 +194,7 @@ struct PinballGame
     /*0x025*/ s8 ballCatchState; // 0=Not caught, 1=Catch mode hole, 2=Egg Hatch Hole, 3=Evo Shop hole, 4=Center hole
     /*0x026*/ u16 collisionCooldownTimer;
     /*0x028*/ u16 modeAnimTimer;
-    /*0x02A*/ u16 unk2A;
+    /*0x02A*/ u16 unused2A;
     /*0x02C*/ int cameraLookAhead;
     /*0x030*/ s8 numLives;
     /*0x031*/ u8 ballSpeed;
@@ -244,7 +244,7 @@ struct PinballGame
     /*0x0C8*/ u8 fillerC8[0x2];
     /*0x0CA*/ s16 scrollEffectX;
     /*0x0CC*/ s16 scrollEffectYpx;
-    /*0x0CE*/ u16 unkCE;
+    /*0x0CE*/ u16 unusedCE;
     /*0x0D0*/ struct Vector16 ballTrailPosition[5];
     /*0x0E4*/ u8 activeFxType;
     /*0x0E6*/ s16 cameraYAdjust;
@@ -254,7 +254,7 @@ struct PinballGame
     /*0x0EE*/ s16 cameraYScrollSpeed;
     /*0x0F0*/ u16 bannerSlideTimer;
     /*0x0F2*/ s8 bannerGfxIndex;
-    /*0x0F3*/ u8 unkF3;
+    /*0x0F3*/ u8 unusedF3;
     /*0x0F4*/ s16 bannerDisplayDuration;
     /*0x0F6*/ s16 bannerSlidePosition;
     /*0x0F8*/ s16 bannerSlideVelocity;
@@ -300,7 +300,7 @@ struct PinballGame
     /*0x16E*/ s8 chinchouWaypointTarget;
     /*0x16F*/ s8 rubyPondContentsChanging;
     /*0x170*/ s8 pondBumperStates[3];
-    /*0x173*/ u8 unk173;
+    /*0x173*/ u8 unused173;
     /*0x174*/ u16 rubyPondChangeTimer;
     /*0x176*/ u8 pondEntitySpriteFlag;
     /*0x177*/ u8 filler177[0x1];
@@ -346,7 +346,7 @@ struct PinballGame
     /*0x1CC*/ s16 prevChargeFillValue;
     /*0x1CE*/ u16 chargeFillAnimTimer;
     /*0x1D0*/ u16 fullChargeSlideAnimTimer;
-    /*0x1D2*/ u16 unk1D2;
+    /*0x1D2*/ u16 unused1D2;
     /*0x1D4*/ u16 chargeIndicatorXOffset;
     /*0x1D6*/ u16 chargeIndicatorYOffset;
     /*0x1D8*/ u16 chargeIndicatorScaleX;
@@ -364,10 +364,10 @@ struct PinballGame
     /*0x1EC*/ s8 eggAnimationPhase;
     /*0x1ED*/ s8 eggAnimFrameIndex;
     /*0x1EE*/ s8 prevEggAnimFrame;
-    /*0x1EF*/ u8 unk1EF;
+    /*0x1EF*/ u8 unused1EF;
     /*0x1F0*/ u16 eggFrameTimer;
-    /*0x1F2*/ u8 unk1F2;
-    /*0x1F3*/ u8 unk1F3;
+    /*0x1F2*/ u8 unused1F2;
+    /*0x1F3*/ u8 unused1F3;
     /*0x1F4*/ s16 portraitOffsetX;
     /*0x1F6*/ s16 portraitOffsetY;
     /*0x1F8*/ s16 walkMonXVelocity;
@@ -414,7 +414,7 @@ struct PinballGame
     /*0x28C*/ u8 filler28C[0x4];
     /*0x290*/ u32 globalAnimFrameCounter;
     /*0x294*/ s8 eventTimerType;
-    /*0x295*/ u8 unk295;
+    /*0x295*/ u8 unused295;
     /*0x296*/ u16 eventTimer; //Timer for events (Only bonus fields or all events?)
     /*0x298*/ u16 cutsceneTilemapColumn;
     /*0x29A*/ u16 catchEmModeStartCount;
@@ -481,7 +481,7 @@ struct PinballGame
     /*0x300*/ s8 makuhitaState;
     /*0x301*/ s8 makuhitaPunchTriggeredFlag;
     /*0x302*/ s8 makuhitaHitAnimationTimer;
-    /*0x303*/ s8 unk303;
+    /*0x303*/ s8 unused303;
     /*0x304*/ u16 makuhitaAnimCounter;
     /*0x306*/ s8 pelipperState;
     /*0x307*/ s8 pelipperSwallowAnimIndex;
@@ -695,7 +695,7 @@ struct PinballGame
     /*0x542*/ u16 scoreCountdownTimer;
     /*0x544*/ u32 totalBonusScore;
     /*0x548*/ s8 sealeoStunnedTimer[2];
-    /*0x54A*/ s8 unk54A;
+    /*0x54A*/ s8 unused54A;
     /*0x54B*/ s8 sphealWasStunned[2];
     /*0x54D*/ s8 sphealStunnedTimer[2];
     /*0x54F*/ s8 sphealEntityCollisionType[2];
@@ -715,11 +715,11 @@ struct PinballGame
     /*0x570*/ struct Vector16 sphealEntityCollisionPos[2];
     /*0x578*/ struct Vector16 sphealVelocity[2];
     /*0x580*/ struct Vector32 sphealPositionQ8[2];
-    /*0x590*/ s8 unk590;
+    /*0x590*/ s8 unused590;
     /*0x591*/ s8 deliveryAnimFrameIndex;
     /*0x592*/ u16 deliveryAnimTimer;
-    /*0x594*/ u16 unk594;
-    /*0x596*/ u16 unk596;
+    /*0x594*/ u16 unused594;
+    /*0x596*/ u16 unused596;
     /*0x598*/ u16 currentSpecies; // Current catch/hatch mode species? Is it evo mode as well?
     /*0x59A*/ u16 evoTargetSpecies;
     /*0x59C*/ u16 lastCatchSpecies; // Previous catch mode species?
@@ -758,7 +758,7 @@ struct PinballGame
     /*0x606*/ u16 particleAnimTimer;
     /*0x608*/ u16 travelAnimSubTimer;
     /*0x60A*/ s8 travelAnimKeyframeIndex;
-    /*0x60B*/ s8 unk60B;
+    /*0x60B*/ s8 unused60B;
     /*0x60C*/ s16 travelPainterPosX;
     /*0x60E*/ s16 travelPainterPosY;
     /*0x610*/ u16 travelPainterVelX;
@@ -831,7 +831,7 @@ struct PinballGame
     /*0x708*/ u32 portraitCycleFrame;
     /*0x70C*/ u16 hudAnimFrameCounter;
     /*0x70E*/ s8 bonusMultTracker;
-    /*0x70F*/ s8 unk70F;
+    /*0x70F*/ s8 unused70F;
     /*0x710*/ s8 holeIndicators[4]; // 'HOLE' light indicators in Ruby/Sapphire field
     /*0x714*/ s8 allHolesLit;
     /*0x715*/ u8 allHolesLitBlinkTimer;

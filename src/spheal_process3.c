@@ -69,13 +69,13 @@ void InitFrameProcess3_BoardLogic_SphealBoard(void)
     gCurrentPinballGame->resultsAnimTimer = 0;
     gCurrentPinballGame->scoreCountdownTimer = 0;
     gCurrentPinballGame->totalBonusScore = 0;
-    gCurrentPinballGame->unk54A = 0;
+    gCurrentPinballGame->unused54A = 0;
     gCurrentPinballGame->bannerSlideYOffset = 0;
-    gCurrentPinballGame->unk590 = 0;
+    gCurrentPinballGame->unused590 = 0;
     gCurrentPinballGame->deliveryAnimFrameIndex = 0;
     gCurrentPinballGame->deliveryAnimTimer = 0;
-    gCurrentPinballGame->unk594 = 0;
-    gCurrentPinballGame->unk596 = 0;
+    gCurrentPinballGame->unused594 = 0;
+    gCurrentPinballGame->unused596 = 0;
     gCurrentPinballGame->ballDeliveryActive = TRUE;
 
     // Clear minion info, used for Sealeo. (3rd slot not used on this board)

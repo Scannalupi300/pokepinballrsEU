@@ -70,7 +70,7 @@ struct Main
     /*0x1A*/ u16 releasedKeys;
     /*0x1C*/ u16 heldKeys;
     /*0x1E*/ u8 filler1E[0x2];
-    /*0x20*/ u16 unk20;
+    /*0x20*/ u16 unused20;
     /*0x22*/ u8 filler22[0x4];
     /*0x26*/ s16 vCount;
     /*0x28*/ s16 shopPanelActive;

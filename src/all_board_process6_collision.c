@@ -771,7 +771,6 @@ u16 CheckCatchTargetCollision(struct Vector16 *ballPosition, u16 *collisionAngle
     struct Vector16 vec1;
     u16 x, y;
     u16 res;
-    u16 var0;
 
     res = FALSE;
     if (gCurrentPinballGame->captureState != MON_CAPTURE_SPECIAL_STATE_CAPTURE_CUTSCENE)
@@ -781,13 +780,11 @@ u16 CheckCatchTargetCollision(struct Vector16 *ballPosition, u16 *collisionAngle
         if ((vec1.y >= 0 && vec1.y < 48) && (vec1.x >= 0 && vec1.x < 48))
         {
             s32 ix = vec1.y * 48 + vec1.x;
-            var0 = gCatchTargetCollisionBitmap[ix];
-            if (var0 & 0x80)
+            if (gCatchTargetCollisionBitmap[ix] & 0x80)
             {
                 gCurrentPinballGame->collisionResolutionState = COLLISION_RESOLUTION_STATE_PIXEL_WALK_ONE_STEP;
                 gCurrentPinballGame->collisionBounceBehaviorType = COLLISION_BOUNCE_BEHAVIOR_TYPE_OUTER_WALL;
-                //Todo: fakematch; used to swap register order
-                *collisionAngle = (var0 & 0x7F & var0) * 512;
+                *collisionAngle = (gCatchTargetCollisionBitmap[ix] & 0x7F) * 512;
                 gCurrentPinballGame->captureSequenceFrame = 20;
 
                 if (gCurrentPinballGame->captureFlashTimer)

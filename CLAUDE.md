@@ -106,6 +106,10 @@ Su Windows (MSYS2) usare il `jq` di msys, non quello mingw (scrive CRLF e rompe
 - `eudis.py ADDR SIZE`, `langsw.py ADDR SIZE`, `xref.py ADDR`: disassembly, tabelle switch per
   lingua, riferimenti (usano `data/eu_names.json`, `data/eu_entries.json`).
 - `romdiff.py`, `worddiff.py`: dove differisce la ROM costruita e di quanto sono spostati i puntatori.
+- `check_relocs.py` (dopo `make`): ricollega gli oggetti con `ld -q` e cerca indirizzi ROM fissi
+  senza rilocazione: nei literal pool del codice (zone `$d`) qualsiasi indirizzo ROM, nei dati
+  solo valori che sono l'inizio di un simbolo, saltando i dati `.incbin`, il valore 0x08000000 e
+  la coda della ROM. Oggi: 0 trovati su 53.117 rilocazioni.
 - `dump_dex_eu.py`, `dump_ereader_eu.py`, `dump_tables_eu.py`: riscrivono dalla ROM il Pokédex,
   i testi e-Reader e le tabelle in `data/src/`.
 - `disasm_rom_tail.py`: riscrive `data/rom_tail.s` (discesa ricorsiva ARM/Thumb con capstone;

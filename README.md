@@ -130,6 +130,9 @@ needs `.inst`.
 - `disasm_rom_tail.py` writes `data/rom_tail.s` from the ROM and checks it.
 - `check.sh`, `cmp_eu.py`, `fdiff.py`, `nonmatching.sh`, `eudis.py`, `xref.py`, `langsw.py`,
   `romdiff.py` and `worddiff.py` compare functions and data with the ROM.
+- `check_relocs.py` relinks the ROM keeping its relocations and checks that no ROM address is
+  hard-coded in the code or in the data, so that code and data can move when the game is
+  modified.
 - `lcm_sim.py` simulates agbcc's partial redundancy elimination, to understand why a value is
   reloaded or reused.
 - `CLAUDE.md` holds the detailed working notes, in Italian.

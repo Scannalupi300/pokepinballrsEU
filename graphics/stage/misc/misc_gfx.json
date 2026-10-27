@@ -1,0 +1,28 @@
+{
+  "kind": "gfx-config",
+  "version": 1,
+  "defaults": {
+    "oam": false,
+    "width": 16,
+    "palette": ""
+  },
+  "files": [
+    {
+      "gfx_filename": "gunk_084FA20C",
+      "mwidth":2,
+      "mheight":2
+    },
+    {
+      "gfx_filename": "treecko_1_up_deliverer",
+      "mwidth":4,
+      "oam":true,
+      "palette": "../main/one_up_sprite.gbapal",
+      "palbank": 0
+    },
+    {
+      "gfx_filename": "life_count_digit",
+      "palette": "../main/one_up_sprite.gbapal",
+      "palbank": 0
+    }
+  ]
+}

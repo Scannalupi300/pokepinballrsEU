@@ -1,0 +1,51 @@
+#ifndef GUARD_CONSTANTS_GLOBAL_H
+#define GUARD_CONSTANTS_GLOBAL_H
+
+#define STATE_INTRO                 0
+#define STATE_TITLE                 1
+#define STATE_GAME_MAIN             2
+#define STATE_GAME_IDLE             3
+#define STATE_OPTIONS               4
+#define STATE_POKEDEX               5
+#define STATE_SAVE_ERASE            6
+#define STATE_EREADER               7
+#define STATE_SCORES_MAIN           8
+#define STATE_SCORES_IDLE           9
+#define STATE_FIELD_SELECT          10
+#define STATE_BONUS_FIELD_SELECT    11
+#define STATE_LANGUAGE_SELECT       12
+
+#define MENU_ACTION_TYPE_CONTINUE_GAME 0
+#define MENU_ACTION_TYPE_FIELD_SELECT  1
+#define MENU_ACTION_TYPE_POKEDEX       2
+#define MENU_ACTION_TYPE_OPTIONS       3
+#define MENU_ACTION_TYPE_SCORES        4
+#define MENU_ACTION_TYPE_EREADER       5
+#define MENU_ACTION_TYPE_TITLE         6
+#define MENU_ACTION_TYPE_GAME_IDLE     7
+#define MENU_ACTION_TYPE_SCORES_IDLE   8
+#define MENU_ACTION_TYPE_INTRO         9
+#define MENU_ACTION_TYPE_BONUS_SELECT  10
+
+// Languages of the European release (gMain_saveData.language)
+#define LANGUAGE_ENGLISH 0
+#define LANGUAGE_FRENCH  1
+#define LANGUAGE_GERMAN  2
+#define LANGUAGE_ITALIAN 3
+#define LANGUAGE_SPANISH 4
+#define NUM_LANGUAGES    5
+#define LANGUAGE_UNSET   99 // no language chosen yet (first boot)
+
+// Species name sets of the European release (struct PokemonSpecies name[])
+#define SPECIES_NAME_INTERNATIONAL 0 // English, Italian and Spanish
+#define SPECIES_NAME_FRENCH        1
+#define SPECIES_NAME_GERMAN        2
+
+#define POKEMON_NAME_LENGTH 10
+#define CAUGHT_TEXT_LENGTH 11
+#define POKEMON_HEIGHT_WEIGHT_TEXT_LENGTH 9
+#define POKEMON_CATEGORY_NAME_LENGTH 11
+#define POKEMON_DEX_LINE_LENGTH 42
+#define EREADER_LINE_LENGTH 25
+
+#endif // GUARD_CONSTANTS_GLOBAL_H

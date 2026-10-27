@@ -1,0 +1,47 @@
+*.exe
+*.o
+!expected_objs/*.o
+*.i
+*.elf
+*.gba
+*.sgm
+*.sa1
+*.sg1
+*.1bpp
+*.4bpp
+*.8bpp
+*.gbapal
+*.lz
+*.rl
+*.latfont
+*.hwjpnfont
+*.fwjpnfont
+sound/**/*.bin
+sound/songs/midi/*.s
+tools/agbcc
+*.map
+*.ld
+*.bat
+*.dump
+*.sa*
+*.ss*
+Thumbs.db
+build/
+.DS_Store
+*.ddump
+baserom.*
+*.swp
+*.swo
+.vscode/
+
+# cmake
+build-cmake-*/
+compile_commands.json
+CMakeLists.txt
+graphics_rules_generated.mk
+
+# clangd
+.cache/
+
+# python
+__pycache__/

@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Clone agbcc
+        uses: actions/checkout@v4
+        with:
+          repository: 'pret/agbcc'
+          path: 'agbcc'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install gcc-arm-none-eabi binutils-arm-none-eabi libpng-dev jq
+
+      - name: Install agbcc
+        working-directory: 'agbcc'
+        run: |
+          sh build.sh
+          sh install.sh ..
+
+      - name: Build and compare pokepinballrs_eu.gba
+        run: make compare -j$(nproc)

@@ -1,0 +1,34 @@
+This note comes from the pret/pokepinballrs project (https://github.com/pret/pokepinballrs), from which this repository started. The commits it cites are in the history of that repository.
+
+-------
+
+AI is known to have been used as a tool assisting with:
+* Decomp matches for problematic functions.
+* An assistant for analysis of selected blocks of code, as one facet towards comprehension. (mainly collision physics)
+* Tool building. (OAM tile slicing, the Collision Viewer, and Python scripts for working with the raw binary graphic files)
+
+The tools listed above were built with the assistance of ChatGPT
+
+Claude is listed in the commit history, helping with the final data dump process, and orchestrating the tool usage for adding the palettes to many pre-existing graphics.
+- Claude's comments and naming have been replaced based on human understanding of the content. The only remains from that work are the raw graphics and json files we would have created anyway.
+
+The latest piece before the first known use of commit with AI in this project is commit 018ce17fa, from Feb 8 2026, just before the piece that added the Oam slicer functionality, allowing for graphics to have a human readable form rather than being the raw tiles.
+
+-------
+
+If there is a desire to keep all the work done by a human, while expunging the remaining AI touched code, (Maybe from a 'code watermark' concern) that's reasonably possible. - Only one segment of that removal would impact the make process: the oam slicer tooling.
+
+These are the pieces that would need addressing: (ordered based on impact, with notes of what each piece is)
+* tools/gbagfx/oam_slices folder, and the code with 'oam' in the naming from the main tools/gbagfx/ main.c and gfx.c files, and the tools/scripts/generate_graphics_rules.sh file.
+  (Ideally, you would want to build build a drop-in-replacement for this, since this is what allows the -oam and -oamshape flags, which allow the graphics files in the folders to look one way, and be cut into the appropriate sequence of tiles for the building of the rom. 
+
+  Without this, you'd need to handle the graphics a different way, whether redumping from scratch, or rewiring the include from binary source. -- If you do go without that oam tooling functionality, you can remove the .json files in the graphics folders)
+
+* tools/collision_viewer folder
+  (this was built primarily to confirm that the collision data pieces for the boards were actually what they claimed to be; that role is done - It also has editing capability, so building a new version from scratch might be desirable for modding purposes)
+
+* tools/gbagfx/oam_helper_scripts folder
+  (These were just used to simplify the correct graphic slicing as a command line tool. - Data has been dumped, these are no longer as useful as they once were, but there are some older graphics that could use some re-slicing work, which these scripts might be useful for.)
+
+* data_dump_tools/dump_packed_sprite_oam_v2.py (and possibly the original)
+  (No loss; their role is no longer needed.)

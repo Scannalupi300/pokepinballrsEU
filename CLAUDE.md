@@ -24,7 +24,13 @@ versione europea. Non c'è più nessuna build USA né codice `#ifdef EUROPE`.
 - Dati: tutti in forma sorgente, e si modificano a mano (non sono più generati: gli strumenti
   che li ricavavano dai sorgenti USA sono stati tolti con la build USA).
   - `data/rom_1.s`, `sound_data.s`, `sound_data_2.s`, `rom_2.s`, `rom_tail.s`: i dati in ordine
-    di ROM. Le canzoni e i dati delle board sono scritti per esteso dentro questi file.
+    di ROM. Includono `data/board_data/*.inc` (board; quelle di Ruby e Sapphire con le varianti
+    per lingua), `data/graphics/*.inc` (liste di grafica di sprite e ritratti), `data/*.inc`
+    (tabelle) e un file per canzone in `sound/songs/`.
+  - nomi: i dati raggiunti dal codice hanno nomi veri; le 586 `gUnknown_<indirizzo EU>` rimaste
+    sono dati che il codice non raggiunge (copie inutilizzate di dati sprite, un gruppo sprite
+    inutilizzato delle board) e 4 segnaposto in RAM. I campi `unusedXX` delle strutture non sono
+    mai letti dal codice.
   - `data/src/pokedex_entries.inc`: Pokédex (205 voci, 5 lingue) con `.dexLang`;
   - `data/src/bonus_summary_templates.inc`: testi del riepilogo bonus FR/IT/DE/ES;
   - `data/src/{high_score_tables,pause_menu_sprite_offsets,idle_press_start_tiles}.inc`:
@@ -122,13 +128,19 @@ Su Windows (MSYS2) usare il `jq` di msys, non quello mingw (scrive CRLF e rompe
 
 ## Prossimi passi possibili
 
-1. Capire che cosa era nel sorgente originale il ciclo vuoto di `RestoreMainFieldDynamicGraphics`.
-   decomp-permuter (github.com/simonlindholm/decomp-permuter) si usa con una cartella per
-   funzione: `base.c` preprocessato (con `-DNONMATCHING` se serve), `target.o` assemblato dal
-   codice originale della funzione (etichette locali `.L`, padding come `.align 2, 0`),
-   `compile.sh` con i flag di agbcc della build. Conviene randomizzare solo la zona interessata
-   (`PERM_RANDOMIZE`): su tutta la funzione non trovava niente, sul solo ciclo dei ritratti ha
-   trovato il ciclo vuoto. I suoi match vanno poi riletti per trovare il costrutto naturale
-   equivalente.
-2. Dividere la musica di `data/sound_data.s` in un file per canzone e i dati delle board di
-   `data/rom_1.s` in file da includere.
+1. Sostituire i trucchi di matching rimasti (elenco nel README, "Remaining work"): `+= 0` in
+   `DuskullPhase_ProcessEntityLogic`, `UpdateGroudonFieldEntities`, `UpdateSphealResultsScreen`;
+   i punti marcati in `LoadPortraitGraphics`, `InitFrameProcess0_DefaultSpriteState_RubyBoard`,
+   `UpdateOptionsSpritePositions`, `CheckGameBoyPlayer`, `DisableGbPlayerRumble`; il ciclo vuoto
+   di `RestoreMainFieldDynamicGraphics`. Tolti, tutti cambiano il codice (misurato). Con il
+   permuter (25 minuti, `-j10`): `LoadPortraitGraphics` resta a 20 (la forma `ptr[...]` al posto
+   di `ptr2 = ptr`; `*(ptr2 += ...)` lascia 2 righe diverse), il caso di Ruby scende da 1020 a 390.
+   Risolti così `CheckCatchTargetCollision` e `RenderTitlePressStartSprites` (vedi README).
+   decomp-permuter (github.com/simonlindholm/decomp-permuter): una cartella per funzione con
+   `base.c` e `target.o` che contengono **solo** quella funzione (il permuter confronta l'intero
+   oggetto: usare `strip_other_fns.py` del permuter su tutti e due; `target.o` si ottiene
+   compilando il sorgente attuale, che corrisponde alla ROM), sorgente preprocessato con
+   `cpp -P` (senza direttive di riga), `compile.sh` con i flag di agbcc della build, `-j` e
+   `PERM_RANDOMIZE` solo sulla zona interessata (su tutta la funzione non trovava niente, sul
+   solo ciclo dei ritratti ha trovato il ciclo vuoto). I suoi match vanno riletti per trovare il
+   costrutto naturale equivalente.

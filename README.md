@@ -66,6 +66,10 @@ Python in UTF-8 mode (`python -X utf8`).
   `rom_2.s` and `rom_tail.s`. Pointer tables are symbolic, sprite sets use the
   `packed_sprite_oam(l)` macros, tables are written with the element type of their C
   declaration, and VRAM destinations with expressions such as `BG_ADDR_FOR_BOARD_WRAP(y, x)`.
+  They include the board data (`data/board_data/`), the lists of sprite and portrait graphics
+  (`data/graphics/`), a few tables (`data/*.inc`) and one file per song (`sound/songs/`).
+- Data that the code never reaches, mostly unused copies of sprite data, keeps
+  `gUnknown_<address>` names.
 - **`data/src/*.inc`** hold the larger hand-written or dumped sources:
   - the Pokédex entries in five languages;
   - the bonus summary texts;
@@ -157,15 +161,26 @@ projects:
   cross jumping removes it, and reload picks registers in rotation, so the next case gets the
   original ones. It was found with
   [decomp-permuter](https://github.com/simonlindholm/decomp-permuter).
+- **`CheckCatchTargetCollision`** reads the collision bitmap byte twice (in the test and for
+  the angle) instead of through a variable; the compiler merges the reads and the registers
+  come out right. This replaced a `(var0 & 0x7F & var0)` fake match.
+- **`RenderTitlePressStartSprites`** needed `asm("")` barriers in two sprite loops. Reading the
+  y offset through `(startGroup->oam + i)` (agbcc compiles it differently from `oam->yOffset`
+  and from `startGroup->oam[i].yOffset`) and keeping the x offset of the other loop in a local
+  give the same code without them.
 - **`EndOfBallBonusSummary`** handles the language index, glyphs and tables of each language.
   **`Draw{Ruby,Sapphire}ModeTimerDisplay`** use a per-language size for one block of "saver"
   tiles.
 
 ## Remaining work
 
-- Find what the empty loop in `RestoreMainFieldDynamicGraphics` was in the original source.
-- Split the music of `data/sound_data.s` into one file per song, and the board data of
-  `data/rom_1.s` into separate include files.
+- Eight functions still need a construct that probably was not in the original source to
+  match: `+= 0` statements (`DuskullPhase_ProcessEntityLogic`, `UpdateGroudonFieldEntities`,
+  `UpdateSphealResultsScreen`), and the spots marked as fake matches in `LoadPortraitGraphics`,
+  `InitFrameProcess0_DefaultSpriteState_RubyBoard`, `UpdateOptionsSpritePositions`,
+  `CheckGameBoyPlayer` and `DisableGbPlayerRumble`. Without them the code changes. The empty loop in
+  `RestoreMainFieldDynamicGraphics` is probably an empty macro.
+- 586 `gUnknown_` symbols are left: data the code never reaches and 4 RAM placeholders.
 
 ## Credits
 

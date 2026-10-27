@@ -259,7 +259,7 @@ void InitFrameProcess0_DefaultSpriteState_KecleonBoard(void)
     );
 }
 
-void nullsub_20(void)
+void UpdateFrameProcess0_DefaultSpriteState_KecleonBoard(void)
 {}
 
 void InitFrameProcess0_DefaultSpriteState_KyogreBoard()

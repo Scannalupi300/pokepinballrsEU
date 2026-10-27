@@ -14615,18 +14615,18 @@ gBoardProcPairs:: @ 0x0894CCE0
 	.4byte InitFrameProcess5_BallMovement_AllBoards,           UpdateFrameProcess5_BallMovement_MainBoards
 	.4byte InitFrameProcess5_BallMovement_AllBoards,           UpdateFrameProcess5_BallMovement_BonusBoards
 	.4byte InitFrameProcess6_Collision_AllBoards,              UpdateFrameProcess6_Collision_AllBoards
-	.4byte nullsub_19,                                         UpdateFrameProcess7_DrawBall_MainBoards
-	.4byte nullsub_19,                                         UpdateFrameProcess7_DrawBall_BonusBoards
+	.4byte FrameProcess_DoNothing,                                         UpdateFrameProcess7_DrawBall_MainBoards
+	.4byte FrameProcess_DoNothing,                                         UpdateFrameProcess7_DrawBall_BonusBoards
 	.4byte InitFrameProcess8_HudUpdate_AllBoards,              UpdateFrameProcess8_HudUpdate_AllBoards
 	.4byte InitFrameProcess0_DefaultSpriteState_RubyBoard,     UpdateFrameProcess0_DefaultSpriteState_RubyBoard
 	.4byte InitFrameProcess0_DefaultSpriteState_SapphireBoard, UpdateFrameProcess0_DefaultSpriteState_SapphireBoard
 	.4byte InitFrameProcess0_DefaultSpriteState_DusclopsBoard, UpdateFrameProcess0_DefaultSpriteState_DusclopsBoard
-	.4byte InitFrameProcess0_DefaultSpriteState_KecleonBoard,  nullsub_20
+	.4byte InitFrameProcess0_DefaultSpriteState_KecleonBoard,  UpdateFrameProcess0_DefaultSpriteState_KecleonBoard
 	.4byte InitFrameProcess0_DefaultSpriteState_KyogreBoard,   UpdateFrameProcess0_DefaultSpriteState_KyogreBoard
 	.4byte InitFrameProcess0_DefaultSpriteState_GroudonBoard,  UpdateFrameProcess0_DefaultSpriteState_GroudonBoard
 	.4byte InitFrameProcess0_DefaultSpriteState_RayquazaBoard, UpdateFrameProcess0_DefaultSpriteState_RayquazaBoard
 	.4byte InitFrameProcess0_DefaultSpriteState_SphealBoard,   UpdateFrameProcess0_DefaultSpriteState_SphealBoard
-	.4byte nullsub_19, nullsub_19
+	.4byte FrameProcess_DoNothing, FrameProcess_DoNothing
 
 gFieldInitFuncs:: @ 0x0894CDC0
 	.4byte MainGameFrameUpdate

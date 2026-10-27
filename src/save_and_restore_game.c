@@ -95,7 +95,7 @@ void RestoreFieldSpecificGraphics(void);
 void RestoreMainFieldDynamicGraphics(void);
 void RestoreRubyBoardTileGraphics(void);
 void RestoreSapphireBoardTileGraphics(void);
-void nullsub_18(void);
+void RestoreBonusFieldDynamicGraphics(void);
 void RestoreDusclopsBonusGraphics(void);
 void RestoreKecleonBonusGraphics(void);
 void RestoreKyogreBonusGraphics(void);
@@ -423,27 +423,27 @@ void RestoreFieldSpecificGraphics(void)
         RestoreSapphireBoardTileGraphics();
         break;
     case FIELD_DUSCLOPS:
-        nullsub_18();
+        RestoreBonusFieldDynamicGraphics();
         RestoreDusclopsBonusGraphics();
         break;
     case FIELD_KECLEON:
-        nullsub_18();
+        RestoreBonusFieldDynamicGraphics();
         RestoreKecleonBonusGraphics();
         break;
     case FIELD_KYOGRE:
-        nullsub_18();
+        RestoreBonusFieldDynamicGraphics();
         RestoreKyogreBonusGraphics();
         break;
     case FIELD_GROUDON:
-        nullsub_18();
+        RestoreBonusFieldDynamicGraphics();
         RestoreGroudonBonusGraphics();
         break;
     case FIELD_RAYQUAZA:
-        nullsub_18();
+        RestoreBonusFieldDynamicGraphics();
         RestoreRayquazaBonusGraphics();
         break;
     case FIELD_SPHEAL:
-        nullsub_18();
+        RestoreBonusFieldDynamicGraphics();
         RestoreSphealBonusGraphics();
         break;
     }
@@ -858,6 +858,6 @@ void RestoreSphealBonusGraphics(void)
     DMA_LANG4_ENFR(gSphealResultsScreenGfx, OBJ_VRAM_ADDR_SPHEAL_SUMMARY_TILES, SIZE_OF_VRAM_SPHEAL_SUMMARY_TILES);
 }
 
-void nullsub_18(void)
+void RestoreBonusFieldDynamicGraphics(void)
 {
 }

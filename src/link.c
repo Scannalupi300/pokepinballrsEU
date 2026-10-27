@@ -89,7 +89,7 @@ enum
 static void EnableSerial(void);
 static void LinkMainCallback(void);
 static void LinkVBlankIntr(void);
-static void nullsub_15(void);
+static void LinkUnusedEmptyFunc(void);
 static void CheckMasterOrSlave(void);
 static void InitTimer(void);
 static void EnqueueSendCmd(u16 *);
@@ -207,7 +207,7 @@ static void LinkVBlankIntr(void)
     REG_IME = 1;
 }
 
-static void nullsub_15(void)
+static void LinkUnusedEmptyFunc(void)
 {
 }
 
@@ -775,7 +775,7 @@ s16 LoadSpriteSetsWithCpuCopy(const struct SpriteSet *const *spriteSets, u16 num
     return pos;
 }
 
-void nullsub_16(void)
+void LinkUnusedEmptyFunc2(void)
 {
 }
 

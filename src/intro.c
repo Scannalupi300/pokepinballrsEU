@@ -550,7 +550,7 @@ void IntroScene1Torchic_07_TorchicRiseAndBGSplit(void)
     gMain.bgOffsets[2].yOffset = gIntroBGParams[1].posY;
 }
 
-void nullsub_4(void)
+void IntroScene1Torchic_08_Unused(void)
 {
 }
 
@@ -579,11 +579,11 @@ void IntroScene1Torchic_09_OrangeTextScrolls(void)
     }
 }
 
-void nullsub_5(void)
+void IntroScene1Torchic_10_Unused(void)
 {
 }
 
-void nullsub_17(void)
+void IntroScene1Torchic_11_Unused(void)
 {
 }
 
@@ -790,7 +790,7 @@ void IntroScene2Pikas_InitVars(void)
     gIntroAnimStep = 0;
 }
 
-void nullsub_6(void)
+void IntroScene2Pikas_15_Unused(void)
 {
 }
 
@@ -825,7 +825,7 @@ void IntroScene2Pikas_16_PikaPairRising(void)
     }
 }
 
-void nullsub_7(void)
+void IntroScene2Pikas_17_Unused(void)
 {
 }
 
@@ -1001,7 +1001,7 @@ void IntroScene3Treecko_22_FlipperHitTextScroll(void)
     }
 }
 
-void nullsub_8(void)
+void IntroScene3Treecko_23_Unused(void)
 {
 }
 
@@ -1097,7 +1097,7 @@ void IntroScene4PlusleMinun_InitVars(void)
     gIntroAnimStep = 0;
 }
 
-void nullsub_9(void)
+void IntroScene4PlusleMinun_27_Unused(void)
 {
 }
 
@@ -1129,7 +1129,7 @@ void IntroScene4PlusleMinun_28_PlusleMinunTextScroll(void)
     }
 }
 
-void nullsub_10(void)
+void IntroScene4PlusleMinun_29_Unused(void)
 {
 }
 
@@ -1310,7 +1310,7 @@ void IntroScene5Mudkip_34_MoveMudkipBallTextScroll(void)
     }
 }
 
-void nullsub_11(void)
+void IntroScene5Mudkip_35_Unused(void)
 {
 }
 
@@ -2029,11 +2029,11 @@ void IntroScene8WailmerLaunch_54_MoveStarsAndWailmer(void)
         gIntroSceneIndex += 3;
 }
 
-void nullsub_12(void)
+void IntroScene8WailmerLaunch_55_Unused(void)
 {
 }
 
-void nullsub_13(void)
+void IntroScene8WailmerLaunch_56_Unused(void)
 {
 }
 
@@ -2321,7 +2321,7 @@ void IntroScene9BallFlight_62_MoveBallSkyFadeWhite(void)
     }
 }
 
-void nullsub_14(void)
+void IntroScene9BallFlight_63_Unused(void)
 {
 }
 

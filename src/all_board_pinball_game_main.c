@@ -837,7 +837,7 @@ void PinballGame_State3_4B20C(void)
     SetMainGameState(STATE_SCORES_MAIN);
 }
 
-void nullsub_19(void)
+void FrameProcess_DoNothing(void)
 {
 }
 

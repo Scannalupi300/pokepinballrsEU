@@ -1,3 +1,6 @@
+#ifdef PLATFORM_PC
+#include "hooks.h"
+#endif
 #include "global.h"
 #include "m4a.h"
 #include "main.h"
@@ -157,6 +160,9 @@ void UpdateFrameProcess2_CameraShakeDrain_MainBoards(void)
     }
 
     ProcessTiltInput();
+#ifdef PLATFORM_PC
+    PcHook_CameraPass();
+#endif
     gMain.bgOffsets[3].xOffset = gCurrentPinballGame->cameraBaseX + gCurrentPinballGame->tiltXOffset + gCurrentPinballGame->screenShakeX;
     gCurrentPinballGame->scrollEffectYpx = gCurrentPinballGame->cameraBaseY + gCurrentPinballGame->tiltYOffset + gCurrentPinballGame->cameraScrollOffset + gCurrentPinballGame->cameraYAdjust;
     var3 = gMain.bgOffsets[3].yOffset - gCurrentPinballGame->scrollEffectYpx;
@@ -237,6 +243,9 @@ void UpdateFrameProcess2_CameraShakeDrain_BonusBoards(void)
     }
 
     ProcessTiltInput();
+#ifdef PLATFORM_PC
+    PcHook_CameraPass();
+#endif
     gMain.bgOffsets[2].xOffset = gCurrentPinballGame->cameraBaseX + gCurrentPinballGame->tiltXOffset + 8 + gCurrentPinballGame->screenShakeX;
     gCurrentPinballGame->scrollEffectYpx = gCurrentPinballGame->cameraBaseY + gCurrentPinballGame->tiltYOffset + gCurrentPinballGame->cameraScrollOffset + gCurrentPinballGame->cameraYAdjust + gCurrentPinballGame->screenShakeY;
     var3 = gCurrentPinballGame->scrollEffectX - gCurrentPinballGame->scrollEffectYpx;

@@ -1,3 +1,6 @@
+#ifdef PLATFORM_PC
+#include "hooks.h"
+#endif
 #include "global.h"
 #include "m4a.h"
 #include "main.h"
@@ -86,7 +89,11 @@ void UpdateSapphireBoardAnimations(void)
         AnimatePelipperBumper();
 
     if (gCurrentPinballGame->saverTimeRemaining
-        && gCurrentPinballGame->ballCatchState == NOT_TRAPPED)
+        && gCurrentPinballGame->ballCatchState == NOT_TRAPPED
+#ifdef PLATFORM_PC
+        && PcHook_SaverTick()
+#endif
+        )
         gCurrentPinballGame->saverTimeRemaining--;
 }
 

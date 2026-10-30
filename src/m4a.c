@@ -3,7 +3,11 @@
 
 extern const u8 gCgb3Vol[];
 
+#ifdef PLATFORM_PC
+#define BSS_CODE
+#else
 #define BSS_CODE __attribute__((section(".bss.code")))
+#endif
 
 BSS_CODE ALIGNED(4) char SoundMainRAM_Buffer[0x800] = {0};
 
@@ -70,7 +74,9 @@ void m4aSoundInit(void)
 {
     s32 i;
 
+#ifndef PLATFORM_PC
     CpuCopy32((void *)((s32)SoundMainRAM & ~1), SoundMainRAM_Buffer, sizeof(SoundMainRAM_Buffer));
+#endif
 
     SoundInit(&gSoundInfo);
     MPlayExtender(gCgbChans);
@@ -314,7 +320,9 @@ void MPlayExtender(struct CgbChannel *cgbChans)
 
 void MusicPlayerJumpTableCopy(void)
 {
+#ifndef PLATFORM_PC
     asm("swi 0x2A");
+#endif
 }
 
 void ClearChain(void *x)
@@ -399,11 +407,13 @@ void SampleFreqSet(u32 freq)
 
     m4aSoundVSyncOn();
 
+#ifndef PLATFORM_PC
     while (*(vu8 *)REG_ADDR_VCOUNT == 159)
         ;
 
     while (*(vu8 *)REG_ADDR_VCOUNT != 159)
         ;
+#endif
 
     REG_TM0CNT_H = TIMER_ENABLE | TIMER_1CLK;
 }

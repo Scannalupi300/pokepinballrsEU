@@ -1,3 +1,6 @@
+#ifdef PLATFORM_PC
+#include "hooks.h"
+#endif
 #include "global.h"
 #include "agb_sram.h"
 #include "main.h"
@@ -227,6 +230,9 @@ void RestoreGameState(u16 arg0)
                                              gCurrentPinballGame->cameraYAdjust;
             }
             // A saved game keeps the language it was played in.
+#ifdef PLATFORM_PC
+            if (!PcHook_Fix(FIX_SAVED_LANGUAGE))
+#endif
             gMain_saveData.language = gCurrentPinballGame->savedLanguage;
         }
     }

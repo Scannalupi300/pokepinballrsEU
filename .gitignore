@@ -45,3 +45,10 @@ graphics_rules_generated.mk
 
 # python
 __pycache__/
+
+# native build
+pokepinballrs_pc.ini
+pokepinballrs_pc.stats
+states/
+replays/
+__pycache__/

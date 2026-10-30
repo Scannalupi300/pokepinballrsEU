@@ -1,3 +1,6 @@
+#ifdef PLATFORM_PC
+#include "hooks.h"
+#endif
 #include "global.h"
 #include "main.h"
 #include "constants/board/center_screen_states.h"
@@ -140,6 +143,10 @@ void LoadPortraitGraphics(s16 displayMode, s16 picIx)
 
             // !!!!! BUG: this should be multiplied by 16 !!
             index = gShopItemData[GOTO_NEXT_CARD][2];
+#ifdef PLATFORM_PC
+            if (PcHook_Fix(FIX_TRAVEL_CARD_PALETTE))
+                index *= 16;
+#endif
         }
         else
         {

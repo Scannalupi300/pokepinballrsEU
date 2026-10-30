@@ -3,8 +3,14 @@
 
 #include <stddef.h>
 
+#ifdef PLATFORM_PC
+// The native build gives every RAM variable its GBA address in the link (pc/pc.mk).
+#define IWRAM_DATA
+#define EWRAM_DATA
+#else
 #define IWRAM_DATA __attribute__((section("iwram_data")))
 #define EWRAM_DATA __attribute__((section("ewram_data")))
+#endif
 
 #define ALIGNED(n) __attribute__((aligned(n)))
 

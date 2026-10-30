@@ -3,6 +3,9 @@
 #include "gbplayer.h"
 #include "link.h"
 #include "m4a.h"
+#ifdef PLATFORM_PC
+#include "hooks.h"
+#endif
 
 EWRAM_DATA struct PinballGame gPinballGameState;
 EWRAM_DATA IntrFunc gIntrTable[14];
@@ -27,15 +30,31 @@ static void ReadKeys(void);
 
 void AgbMain(void)
 {
+#ifdef PLATFORM_PC
+restart:
+#endif
     RegisterRamReset(0xFF);
     InitIntrHandlers();
     DmaCopy32(3, IntrMain, IntrMain_Buffer, sizeof(IntrMain_Buffer));
     INTR_VECTOR = IntrMain_Buffer;
     InitGame();
+#ifdef PLATFORM_PC
+    if (!PcHook_SkipBootScreens())
+        InitGameBoyPlayer();
+    PcHook_AfterBoot();
+#else
     InitGameBoyPlayer();
+#endif
     while (1)
     {
+#ifdef PLATFORM_PC
+        if (PcHook_LoopTop())
+            goto restart;
+#endif
         ReadKeys();
+#ifdef PLATFORM_PC
+        PcHook_AfterKeys();
+#endif
         gMainFuncs[gMain.mainState]();
         MainLoopIter();
     }
@@ -222,6 +241,9 @@ s16 Cos(u16 arg0)
 static void ReadKeys(void)
 {
     u16 keyInput = ~REG_KEYINPUT;
+#ifdef PLATFORM_PC
+    keyInput = PcHook_FilterKeys(keyInput & KEYS_MASK) | (keyInput & ~KEYS_MASK);
+#endif
     gMain.newKeys = keyInput & (keyInput ^ gMain.heldKeys);
     gMain.releasedKeys = JOY_HELD(keyInput ^ gMain.heldKeys);
     gMain.heldKeys = keyInput;

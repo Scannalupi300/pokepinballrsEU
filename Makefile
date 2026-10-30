@@ -75,13 +75,13 @@ FIX       := tools/gbafix/gbafix$(EXE)
 SHA1 := $(shell { command -v sha1sum || command -v shasum; } 2>/dev/null) -c
 
 TOOLS_DIR = tools
-TOOLDIRS = $(filter-out $(TOOLS_DIR)/agbcc $(TOOLS_DIR)/eu_port $(TOOLS_DIR)/m2ctx.py $(TOOLS_DIR)/scripts $(TOOLS_DIR)/collision_viewer,$(wildcard $(TOOLS_DIR)/*))
+TOOLDIRS = $(filter-out $(TOOLS_DIR)/agbcc $(TOOLS_DIR)/eu_port $(TOOLS_DIR)/m2ctx.py $(TOOLS_DIR)/scripts $(TOOLS_DIR)/collision_viewer $(TOOLS_DIR)/leaderboard,$(wildcard $(TOOLS_DIR)/*))
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
 
 # Build tools when building the rom
 # Disable dependency scanning for clean/tidy/tools
-ifeq (,$(filter-out all compare rom,$(MAKECMDGOALS)))
+ifeq (,$(filter-out all compare rom pc,$(MAKECMDGOALS)))
 $(call infoshell, $(HOST_VARS) $(MAKE) tools)
 else
 NODEP := 1
@@ -132,7 +132,7 @@ clean: tidy clean-tools
 	find sound -iname '*.bin' -exec rm {} +
 
 tidy:
-	rm -f $(ROM) $(ELF) $(MAP)
+	rm -f $(ROM) $(ELF) $(MAP) $(PC_EXE)
 	rm -rf build/*
 
 tools: $(TOOLDIRS)
@@ -145,6 +145,7 @@ clean-tools:
 
 include graphics_rules.mk
 include audio_rules.mk
+include pc/pc.mk
 
 %.s: ;
 %.png: ;

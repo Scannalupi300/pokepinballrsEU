@@ -18,6 +18,13 @@
 #define DEX_TEXT_ROWS 3
 #define DEX_TEXT_CHARS_PER_PAGE (DEX_TEXT_ROWS * POKEMON_DEX_LINE_LENGTH)
 
+#ifdef PLATFORM_PC
+#include "hooks.h"
+#define POKEDEX_SCROLL_WAIT PcHook_PokedexScrollWait(SCROLL_WAIT_FRAMES)
+#else
+#define POKEDEX_SCROLL_WAIT SCROLL_WAIT_FRAMES
+#endif
+
 enum PokedexStates
 {
     POKEDEX_STATE_LOAD_GRAPHICS,
@@ -1017,7 +1024,7 @@ static void PokedexListScrollUp(void)
             m4aSongNumStart(SE_MENU_MOVE);
         }
 
-        gPokedexScrollWaitFrames = SCROLL_WAIT_FRAMES;
+        gPokedexScrollWaitFrames = POKEDEX_SCROLL_WAIT;
     }
     else
     {
@@ -1025,7 +1032,7 @@ static void PokedexListScrollUp(void)
         gPokedexCursorOffset--;
         gPokedexSelectedMon--;
 
-        gPokedexScrollWaitFrames = SCROLL_WAIT_FRAMES;
+        gPokedexScrollWaitFrames = POKEDEX_SCROLL_WAIT;
     }
 
     gPokedexScrollActive = TRUE;
@@ -1057,14 +1064,14 @@ static void PokedexListScrollDown(void)
             m4aSongNumStart(SE_MENU_MOVE);
         }
 
-        gPokedexScrollWaitFrames = SCROLL_WAIT_FRAMES;
+        gPokedexScrollWaitFrames = POKEDEX_SCROLL_WAIT;
     }
     else
     {
         m4aSongNumStart(SE_MENU_MOVE);
         gPokedexCursorOffset++;
         gPokedexSelectedMon++;
-        gPokedexScrollWaitFrames = SCROLL_WAIT_FRAMES;
+        gPokedexScrollWaitFrames = POKEDEX_SCROLL_WAIT;
     }
 
     gPokedexScrollActive = TRUE;
@@ -1086,7 +1093,7 @@ static void PokedexListScrollUpFast(void)
         gPokedexListPosition = 0;
 
     gPokedexSelectedMon = gPokedexListPosition + gPokedexCursorOffset;
-    gPokedexScrollWaitFrames = SCROLL_WAIT_FRAMES;
+    gPokedexScrollWaitFrames = POKEDEX_SCROLL_WAIT;
 }
 
 static void PokedexListScrollDownFast(void)
@@ -1105,7 +1112,7 @@ static void PokedexListScrollDownFast(void)
         gPokedexListPosition = gPokedexListEntryCount - NUM_BONUS_SPECIES - 1;
 
     gPokedexSelectedMon = gPokedexListPosition + gPokedexCursorOffset;
-    gPokedexScrollWaitFrames = SCROLL_WAIT_FRAMES;
+    gPokedexScrollWaitFrames = POKEDEX_SCROLL_WAIT;
 }
 
 void Pokedex_CheckDeleteKeyComboPressed(void)

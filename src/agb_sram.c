@@ -36,6 +36,13 @@ u32 VerifySramFast_Core(const u8 *src, u8 *dest, u32 size)
 }
 
 void SetSramFastFunc(void)
+#ifdef PLATFORM_PC
+{
+    // x86 code can't be copied to RAM and run there: call the functions directly.
+    ReadSramFast = ReadSramFast_Core;
+    VerifySramFast = VerifySramFast_Core;
+}
+#else
 {
     u16 *src;
     u16 *dest;
@@ -73,6 +80,7 @@ void SetSramFastFunc(void)
 
     REG_WAITCNT = (REG_WAITCNT & ~3) | 3;
 }
+#endif
 
 u32 WriteAndVerifySramFast(const u8 *src, u8 *dest, u32 size)
 {

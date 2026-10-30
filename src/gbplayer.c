@@ -1,6 +1,9 @@
 #include "global.h"
 #include "gbplayer.h"
 #include "main.h"
+#ifdef PLATFORM_PC
+#include "hooks.h"
+#endif
 
 //sym_ewram
 EWRAM_DATA u16 sGbPlayerCurKeys;
@@ -197,6 +200,9 @@ void RestoreDefaultInterrupts(void)
 
 void PlayRumble(int arg0)
 {
+#ifdef PLATFORM_PC
+    PcHook_Rumble(arg0);
+#endif
     if (gMain_saveData.rumbleEnabled)
     {
         gRumblePatternIndex = arg0;

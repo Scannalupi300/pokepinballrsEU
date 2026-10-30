@@ -31,6 +31,11 @@
 
 #define CpuFastCopy(src, dest, size) CpuFastSet(src, dest, ((size)/(32/8) & 0x1FFFFF))
 
+#ifdef PLATFORM_PC
+// The native build has no DMA hardware: pc/gba_bios.c does the transfer.
+void HostDmaSet(u32 dmaNum, u32 src, u32 dest, u32 control);
+#define DmaSet(dmaNum, src, dest, control) HostDmaSet(dmaNum, (u32)(src), (u32)(dest), (u32)(control))
+#else
 #define DmaSet(dmaNum, src, dest, control)        \
 {                                                 \
     vu32 *dmaRegs = (vu32 *)REG_ADDR_DMA##dmaNum; \
@@ -39,6 +44,7 @@
     dmaRegs[2] = (vu32)(control);                 \
     dmaRegs[2];                                   \
 }
+#endif
 
 #define DMA_FILL(dmaNum, value, dest, size, bit)                                              \
 {                                                                                             \

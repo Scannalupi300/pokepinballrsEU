@@ -1,3 +1,6 @@
+#ifdef PLATFORM_PC
+#include "hooks.h"
+#endif
 #include "global.h"
 #include "m4a.h"
 #include "main.h"
@@ -282,6 +285,9 @@ void EndOfBallSequence(void)
         if (gCurrentPinballGame->numLives > 0)
         {
             gCurrentPinballGame->saverTimeRemaining = BALL_NORMAL_LAUNCH_SAVER_TIME;
+#ifdef PLATFORM_PC
+            if (!PcHook_KeepBall())
+#endif
             gCurrentPinballGame->numLives--;
             gCurrentPinballGame->collisionCooldownTimer = 60;
             gCurrentPinballGame->bonusCatchCount = 0;

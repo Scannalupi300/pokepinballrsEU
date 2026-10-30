@@ -1,3 +1,6 @@
+#ifdef PLATFORM_PC
+#include "hooks.h"
+#endif
 #include "global.h"
 #include "main.h"
 #include "constants/mem_layout/dusclops.h"
@@ -273,6 +276,10 @@ void UpdateScrollingBackgroundTiles(void)
     s16 scrollYTileIx;
     const s16 *scrollTargetDataTable;
 
+#ifdef PLATFORM_PC
+    if (PcHook_ScrollCatchUp())
+        return;
+#endif
     scrollYTileIx = gMain.bgOffsets[3].yOffset / 8;
     scrollTargetDataTable = gScrollTileUpdateTable[scrollYTileIx];
     if (scrollYTileIx == gCurrentPinballGame->prevScrollYTileIx)

@@ -76,6 +76,58 @@ La build non richiede la ROM originale. Gli strumenti di analisi sì: copiare la
 Su Windows (MSYS2) usare il `jq` di msys, non quello mingw (scrive CRLF e rompe
 `graphics_rules_generated.mk`), e Python in modalità UTF-8 (`python -X utf8`).
 
+## Build nativa Windows (`pc/`, `make pc`)
+
+`pokepinballrs_pc.exe`: il codice C e i dati del gioco compilati per Win32 a 32 bit (toolchain
+MSYS2 `mingw-w64-i686-gcc`, in `/mingw32/bin`), senza emulatore. Dettagli nel README
+("Native Windows build"). Punti da sapere:
+
+- 32 bit perché i puntatori siano da 4 byte: i `.s` dei dati (passati da `pc/arm2x86.sed`:
+  `.word` → `.4byte`, `.align` → `.p2align`, commenti `@`) hanno la disposizione delle struct C.
+  `data/rom_tail.s` è escluso. Lato gioco `-fno-leading-underscore` (stessi nomi dell'assembly);
+  `pc/win32.c` è compilato normalmente e i simboli di confine hanno etichette asm (`HOST_SYM`).
+- agbcc arrotonda **ogni struct/union** a multipli di 4 con allineamento 4: `pc/struct_align.pl`
+  aggiunge `aligned(4)` dopo il preprocessore (senza, 61 differenze, es. `struct Main` 19164 contro
+  14564). Verificato confrontando sizeof/alignof/offsetof di tutte le struct degli header.
+- Memoria GBA agli indirizzi GBA: prima sezione dell'immagine `.gbamem` (0x01FF1000-0x0E010000,
+  script `build/pc/pc.ld` derivato da quello di default di ld; le sezioni PE non possono avere
+  buchi, e `VirtualAlloc` a 0x02000000 fallisce perché user32/gdi32 mappano lì). Indirizzi delle
+  variabili RAM presi dall'ELF GBA (`build/pc/ram_syms.ld`), quindi `make pc` costruisce prima la ROM.
+- Divisione per zero: gestore di eccezioni che dà 0 come `__divsi3` (succede in `SetMatrixScale`).
+- `#ifdef PLATFORM_PC` nel codice del gioco: `DmaSet` (macro.h), `EWRAM_DATA`/`IWRAM_DATA`,
+  `SetSramFastFunc`, `swi 0x2A` e attese su `REG_VCOUNT` in m4a.c. La ROM resta identica.
+- Test automatici: variabili `PINBALL_INPUT` (es. `320:A,325:,700:START`), `PINBALL_CMD` (es.
+  `30:train-0-255,600:save,900:vk-27`), `PINBALL_DUMP`, `PINBALL_DUMP_FRAMES`, `PINBALL_SET`,
+  `PINBALL_DIR` (per non toccare il salvataggio vero), `PINBALL_HIDDEN`, `PINBALL_SYNC`,
+  `PINBALL_TRACE`, `PINBALL_VERIFY`, `PINBALL_EXIT_FRAME`, `PINBALL_TURBO`, `PINBALL_NOAUDIO`,
+  `PINBALL_WAV` e altre (elenco in cima a `pc/win32.c`). Il crash handler dà l'indirizzo:
+  `addr2line -e pokepinballrs_pc.exe` (con `/mingw32/bin` nel PATH).
+- Non supportati: cavo link, e-Reader.
+- Thread: gioco (`AgbMain`), display (`pc/video.c`, D3D11 con GDI di riserva, più worker per il
+  renderer), finestra. `pc/ppu.c` disegna da una copia del frame (`struct PpuFrame`, `pc/frame.h`:
+  VRAM, palette, OAM, registri per linea), quindi può ridisegnarlo. A scala 1 e senza
+  interpolazione l'immagine è identica a quella di prima (confronto frame per frame).
+- Lato gioco delle aggiunte: `pc/hooks.c`, chiamato dal codice del gioco sotto `#ifdef PLATFORM_PC`
+  (ciclo principale, `ReadKeys`, telecamera, `PlayRumble`, ball save, palline, Pokédex, i fix).
+  Lato Windows: `input.c`, `settings.c`, `state.c`, `replay.c`, `stats.c`, `online.c`, `ui.c`,
+  `ui_art.c`.
+- Partenza canonica: quando una partita sta per iniziare, `PcHook_LoopTop` prende `struct RunHeader`
+  e il programma riparte come da accensione entrando direttamente nella partita. Replay =
+  intestazione + tasti di ogni `ReadKeys`; a fine partita si confronta un hash. Determinismo provato
+  con tavolo intero, interpolazione e latenza ridotta accesi e spenti.
+- Tavolo intero: `RunCameraPasses` salva lo stato, riesegue il frame con la telecamera forzata
+  (`PcHook_CameraPass`) e tiene solo l'immagine. Sapphire ha il limite della telecamera a Y = -4 e
+  `bgOffsets` è senza segno: la tavola parte da 0.
+- Stati salvati: solo in cima al ciclo principale (lo stack è vuoto); valgono solo per la build che
+  li ha fatti perché contengono puntatori. Pokédex e record non tornano indietro al caricamento.
+- Dipendenze: `make` vede ora anche `pc/*.h` dai sorgenti del gioco (scaninc con `-I pc`); prima
+  una modifica a `host.h` non ricompilava `src/`, e i flag dei fix restavano vecchi.
+- Menu e pannelli sono disegnati con la grafica del gioco (cornice e sprite delle Opzioni, font del
+  Pokédex) su una tela da 240x160: `PINBALL_UI_CHECK=1` segnala i testi che non ci stanno. Il font
+  non ha `%`, `+`, `>`, `Ù`.
+- I glifi accentati del font del Pokédex stanno oltre la fine di `text_glyphs_eu.4bpp`, nei dati
+  che seguono (`gHighScoreScoreTable_Tilemap`): si leggono dalla ROM, non dal file.
+
 ## Convenzioni nel codice
 
 - Lingua corrente: `gMain_saveData.language` (gMain+0x141). EN 0, FR 1, DE 2, IT 3, ES 4, 99 = non impostata.

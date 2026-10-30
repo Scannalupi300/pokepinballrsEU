@@ -32,6 +32,108 @@ European ROM to `baserom_eu.gba` at the root of the repository (it is ignored by
 On Windows (MSYS2), use the msys `jq`, because the mingw one writes CRLF line endings. Also run
 Python in UTF-8 mode (`python -X utf8`).
 
+## Native Windows build
+
+The same C code and data also build into a Windows program that runs the game without an
+emulator. It needs the 32-bit MSYS2 toolchain (`pacman -S mingw-w64-i686-gcc`) besides the GBA
+one, and builds the ROM first, because it takes the RAM addresses from the GBA ELF:
+
+    make pc
+
+This makes `pokepinballrs_pc.exe`, which needs no DLL besides the Windows ones. The save file is
+`pokepinballrs_pc.sav` next to it, in the same format as an emulator's SRAM save (32 KB), with the
+settings (`.ini`), statistics (`.stats`), `states/` and `replays/`.
+`make pc PC_CONSOLE=1` keeps a console window for the log.
+
+| Keyboard | Gamepad | GBA |
+| --- | --- | --- |
+| Arrows | D-pad, left stick | D-pad |
+| X, Space | A, Y | A |
+| Z | B, X | B |
+| A, Left Shift | LB, LT | L |
+| S, Right Shift | RB, RT | R |
+| Enter | Start | Start |
+| Backspace | Back | Select |
+
+Esc or F1 (right stick click on a pad) opens the menu, F5 and F7 quick save and load, F3 is the
+debug overlay, Tab runs the game unthrottled, and F11 or Alt+Enter switches to full screen. All
+of them can be changed in the menu, except the full screen keys.
+
+### What the native build adds
+
+The game's logic is untouched: it runs at the GBA's 59.73 Hz and, with **Vanilla** on (the
+default), exactly as on the GBA. The menu is drawn with the game's own art: the frame and sprites
+of the Options screen and the Pokédex font.
+
+- **Whole table:** a view of the whole board with no scrolling, for a tall window or a monitor
+  turned sideways. Each frame the game code runs a few more times from a saved state with the
+  camera elsewhere, keeping only the picture, so all the sprites are there; what is tied to the
+  screen (status bar, banners) goes on top.
+- **Side panels:** score, balls, coins, mode, timers, Pokédex, the Pokémon being caught or
+  evolved, the area and a map of the table.
+- **More than 60 fps:** the renderer works from a copy of each frame on its own thread and can
+  draw the ball and the camera in between two game frames, at up to 4 times the GBA's resolution.
+  Tiles and sprite frames always come from the newest frame.
+- **Scaling and filters:** whole-number or fitted scaling, LCD and CRT filters (Direct3D 11, with
+  GDI as a fallback, without the filters).
+- **Controls:** every key and pad button can be changed; XInput pads and, through the joystick
+  API, the others. XInput pads vibrate where the game asks the Game Boy Player to, and on the
+  flippers.
+- **Reduced latency:** keys are read right before the game uses them, and the frame is drawn with
+  the sprites and scroll of the frame just computed, one frame earlier than on the GBA. It changes
+  nothing in the game: a replay plays the same with it on or off.
+- **Suspend:** closing the window with a game on the table saves it, and the next start offers it
+  back. There is also a quick save slot. Saved states work only with the build that made them,
+  and they leave the Pokédex and the high scores alone.
+- **Training:** straight to any bonus stage, or to a table in Catch, Hatch, Evolution, Travel or
+  Jirachi mode or at the bonus holes. Nothing is saved.
+- **Options:** longer ball save, infinite balls and a faster Pokédex list. Language from the menu.
+- **Fixes:** the "Saved language glitch" (a resumed game goes back to the language it was saved
+  in) and a wrong palette on the travel card, each with its own switch.
+- **Replays:** every game saves itself as its starting conditions and its keys, a few KB. A game
+  starts from a known state (the program restarts as if switched on and goes straight into it),
+  which makes it deterministic; the end of the file has the score and a hash of the game to check
+  against.
+- **Debug overlay:** ball position, speed and spin, RNG, board state, timers, hitboxes and the
+  collision map. `PINBALL_TRACE=file` writes the ball and the board state of every frame to a CSV.
+- **Statistics, achievements and a leaderboard:** there is no public server. `tools/leaderboard/server.py`
+  is one to run yourself (set `online_url` in the `.ini`). It replays every game it gets with
+  `PINBALL_VERIFY` and takes the score from that, so a score can't be made up. It runs the game on
+  files from strangers: keep it on a machine with nothing else on it.
+
+How it works (`pc/`):
+
+- **32-bit, GBA memory at the GBA addresses.** Pointers are 4 bytes as on the GBA, so the data
+  assembly, assembled for x86 after `pc/arm2x86.sed`, has the layout that the C code expects. The
+  first section of the image covers 0x02000000-0x0E00FFFF, so EWRAM, IWRAM, the I/O registers,
+  palette, VRAM, OAM and SRAM are at their GBA addresses, and each RAM variable gets its address
+  from the GBA ELF. The game side is compiled with `-fno-leading-underscore` to share symbol names
+  with the assembly.
+- **agbcc's struct layout.** agbcc gives every struct and union a size that is a multiple of 4
+  and 4-byte alignment; `pc/struct_align.pl` asks GCC for the same.
+- **Hardware.** `pc/gba_bios.c` has the BIOS calls (ArcTan2 with the BIOS polynomial), DMA
+  (through `DmaSet`), and the frame: `VBlankIntrWait` runs the scanlines, recording the registers
+  of each one, and raises the V-count and V-blank interrupts at their lines. `pc/ppu.c` draws the
+  display from that record (text, affine and bitmap backgrounds, sprites, windows, blending,
+  mosaic); with scale 1 and no interpolation its output is the GBA's. Divisions by zero give 0, as
+  in libgcc's `__divsi3`.
+- **Threads.** The game runs on its own thread, the display on another (`pc/video.c`, with
+  workers for the renderer), and the window on the main one. `pc/hooks.c` is the game side of the
+  additions; the game code calls it under `#ifdef PLATFORM_PC`.
+- **Sound.** `pc/m4a_host.c` is `src/m4a_1.s` in C (mixer with compressed and reversed
+  samples, sequencer, commands); `pc/audio.c` adds the four PSG channels from the sound
+  registers and resamples to 48 kHz.
+- The few GBA-only spots in the game code are under `#ifdef PLATFORM_PC` (`DmaSet`, the
+  RAM section attributes, the SRAM routines copied to RAM, two waits on `REG_VCOUNT` in m4a), and
+  so are the hooks; the ROM is unchanged.
+
+Not supported: link cable and e-Reader cards.
+
+For automated tests the program reads `PINBALL_INPUT` (keys held from given frames),
+`PINBALL_CMD` (what the menu does, and simulated keys), `PINBALL_DUMP` and `PINBALL_DUMP_FRAMES`
+(save what is on screen as BMP), `PINBALL_SET` (settings), `PINBALL_DIR` (where its files go),
+`PINBALL_EXIT_FRAME`, `PINBALL_TURBO`, `PINBALL_HIDDEN` and others; see the top of `pc/win32.c`.
+
 ## The European release
 
 - **Language selection.** A language selection screen appears at the first boot. The language
